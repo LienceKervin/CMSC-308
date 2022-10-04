@@ -1,0 +1,176 @@
+	/*
+ * Created by SharpDevelop.
+ * User: redfox
+ * Date: 10/4/2022
+ * Time: 9:01 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+	using System;
+
+namespace dimatatac_struct
+{
+class Program
+{
+	struct BoardMarker
+{
+		public string inkColor;
+		public int inkContent;
+}
+
+		static void Main(string[] args)
+{
+		BoardMarker bm;
+		bm.inkColor = "White";
+		bm.inkContent = 20;
+		int choice;
+
+string msg = string.Empty;
+bool flag = true;
+
+while (flag == true)
+{
+		Console.Clear();
+		Console.WriteLine("===Menu===");
+		Console.WriteLine("[1] Display Info");
+		Console.WriteLine("[2] Change Color");
+		Console.WriteLine("[3] Refill");
+		Console.WriteLine("[4] Write");
+		Console.Write("Enter your choice: ");
+		
+		choice = Convert.ToInt32(Console.ReadLine());
+		
+		switch (choice)
+		{
+		case 1:
+		Console.Clear();
+		DisplayInfo(bm.inkContent, bm.inkColor);
+		Console.ReadKey(true);
+		
+		break;
+		
+		case 2:
+		Console.Clear();
+		if (bm.inkContent == 0)
+		{
+		bm.inkColor = ChangeColor();
+		Console.WriteLine("Marker Color:" + bm.inkColor);
+		}
+		else
+		{
+		Console.WriteLine("Please empty out the ink content first before changing color...");
+		}
+		
+		Console.ReadKey(true);
+		
+		break;
+		
+		case 3:
+		Console.Clear();
+		bm.inkContent = Refill();
+		Console.ReadKey(true);
+		
+		break;
+		
+		case 4:
+		
+		if (bm.inkContent != 0)
+		{
+		Console.Write("\n");
+		Console.Write("Message:");
+		Console.Write("\n");
+		
+		msg = Console.ReadLine();
+		
+		Console.Write(";\n");
+		Write(msg, bm.inkColor);
+
+		bm.inkContent = bm.inkContent - 10;
+		
+		Console.ForegroundColor = ConsoleColor.White;
+		Console.WriteLine("\nRemaining ink:" + bm.inkContent);
+		}
+		else
+		{
+		Console.Write("Not enough ink content please refill...");
+		}
+		
+		Console.ReadKey(true);
+		
+		break;
+		
+		case 5:
+		flag = false;
+		
+		break;
+		
+		default:
+		Console.WriteLine("Invalid Command...");
+		Console.ReadKey(true);
+		
+		break;
+		}
+		}
+		Console.WriteLine("Exiting program...");
+		Console.ReadKey(true);
+		}
+		public static void DisplayInfo(int inkContent, string inkColor)
+		{
+		Console.WriteLine("Remaining ink:" + inkContent);
+		Console.WriteLine("Marker Color:" + inkColor);
+		}
+		
+		public static string ChangeColor()
+		{
+		int choice;
+		
+		retry:
+		Console.WriteLine("Choose from: \n[1] White \n[2] Blue \n[3]");
+		choice = Convert.ToInt32(Console.ReadLine());
+		
+		Console.Write("\n");
+		
+		switch (choice)
+		{
+		case 1:
+		return "white";
+		
+		case 2:
+		return "blue";
+		
+		case 3:
+		return "red";
+		
+		default:
+		Console.WriteLine("Wrong input please try again!");
+		Console.ReadKey(true);
+		Console.Clear();
+		goto retry;
+		
+		}
+		}
+		
+		static int Refill()
+		{
+		int content = 20;
+		Console.WriteLine("Ink refilled!");
+		return content;
+		}
+		
+		public static void Write(string msg, string color)
+		{
+		
+		switch (color)
+		{
+			case "blue":
+		Console.ForegroundColor = ConsoleColor.Blue;
+		break;
+		case "red":
+		Console.ForegroundColor = ConsoleColor.Red;
+		break;
+		}
+		Console.WriteLine(msg);
+		
+		}
+	}
+}

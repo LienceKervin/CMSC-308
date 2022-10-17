@@ -1,0 +1,74 @@
+/*
+ * Created by SharpDevelop.
+ * User: redfox
+ * Date: 10/17/2022
+ * Time: 5:10 PM
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+using System;
+using System.Collections.Generic;
+
+namespace HashSet_D
+{
+	class Program
+	{
+		 public static void Main(string[] args)
+		{
+		 	
+		 	
+			HashSet<int> hash1 = new HashSet<int>();
+			HashSet<int> hash2 = new HashSet<int>();
+			HashSet<int> set1 = new HashSet<int>();
+			HashSet<int> set2 = new HashSet<int>();
+			HashSet<int> list1 = new HashSet<int>();
+			HashSet<int> list2 = new HashSet<int>();
+			  
+			int input;
+			
+			Console.WriteLine("====HashSet 1=====");
+			for (int i=0; i<5; i++)
+				
+			{
+				Console.WriteLine("Element {0}: ", i);
+				int num = Convert.ToInt32(Console.ReadLine());
+				hash1.Add(num);
+				set1.Add(num);
+				list1.Add(num);
+			}
+			Console.WriteLine("====HashSet 2=====");
+			for (int i=0; i<5; i++)
+			{
+			Console.WriteLine("Element {0} ", i);
+				int num = Convert.ToInt32(Console.ReadLine());
+				hash2.Add(num);
+				set2.Add(num);
+				list2.Add(num);
+			}
+			Console.WriteLine("\nUNION {0}:, i");
+			hash1.UnionWith(hash2);
+			foreach(int item in hash1)
+			{
+				Console.Write(" ");
+				Console.Write(item);
+					}
+			  Console.Write("\nIntersect: ");
+			set1.IntersectWith(set2);
+			foreach (int item in set1)
+			{
+				Console.Write(" ");
+				Console.Write(item);
+			}
+
+            Console.Write("\nSet Difference:");
+			list1.ExceptWith(list2);
+			foreach (int item in list1)
+			{
+				Console.Write(" ");
+				Console.Write(item);
+		}
+			Console.ReadKey();
+	}
+	
+}
+}
